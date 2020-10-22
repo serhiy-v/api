@@ -1,7 +1,7 @@
 const express = require('express');
 const config = require('./config/index');
 const mongoose = require('mongoose');
-require('./models/model');
+require('./models/index');
 const bodyParser = require('body-parser');
 
 
