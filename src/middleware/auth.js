@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {jwtSecret} = require('../config/index');
+
 
 module.exports = (req,res,next) =>{
     var authHeader = req.get('Authorization');
@@ -9,7 +9,7 @@ module.exports = (req,res,next) =>{
 
     const token = authHeader.replace('Bearer ', '');
     try{
-        jwt.verify(token,jwtSecret);
+        jwt.verify(token,process.env.ACCES_TOKEN_SECRET);
     } catch (e){
         if (e instanceof jwt.JsonWebTokenError){
             res.status(401).json({message: 'Invalid token'});

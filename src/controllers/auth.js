@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bCrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {jwtSecret} = require('../config');
+
 
 const User = mongoose.model('users');
 
@@ -15,7 +15,7 @@ const signIn = (req,res) => {
         const isValid = bCrypt.compareSync(password, user.password);
 
         if(isValid){
-            const token = jwt.sign(user._id.toString(), jwtSecret);
+            const token = jwt.sign(user._id.toString(), process.env.ACCES_TOKEN_SECRET);
             res.json({token});
         }
         else{
