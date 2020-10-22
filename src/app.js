@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-mongoose.connect(config.mongoUrl, {useNewUrlParser: true},{useFindAndModify: false});
+require('./db/db');
 
 require("./routes/routes")(app);
 
